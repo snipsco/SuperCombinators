@@ -1,2 +1,3 @@
 # SuperCombinators
-A parser combinator framework
+
+A parser combinator framework written in Swift.
