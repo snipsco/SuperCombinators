@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SuperCombinators.playground">
+   </FileRef>
+   <FileRef
       location = "container:SuperCombinators.xcodeproj">
    </FileRef>
 </Workspace>
