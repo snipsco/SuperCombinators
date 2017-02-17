@@ -118,4 +118,4 @@ An additional help is the introduction of a `Pattern` class, that matches the pr
 
 Memory leaks are avoided by adding a private class whose `parse` function does not hold a strong reference to itself encapsulated in a `Parser`.
 
-The implementation can be found in [Recursive.swift](Recursive.swift)
+The implementation can be found in [Recursive.swift](Sources/Recursive.swift)
