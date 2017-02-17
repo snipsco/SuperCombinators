@@ -10,6 +10,9 @@ import Foundation
 
 extension Pattern {
 
+    /**
+     Matches all unicode characters `characterSet` does not contain.
+    */
     public static func characters(notIn characterSet: CharacterSet) -> Pattern {
         return Pattern { text in
             guard !text.isEmpty else { return nil }
@@ -21,10 +24,16 @@ extension Pattern {
         }
     }
 
+    /**
+     Matches all unicode characters `characterSet` contains.
+    */
     public static func characters(in characterSet: CharacterSet) -> Pattern {
         return characters(notIn: characterSet.inverted)
     }
 
+    /**
+     Matches a single unicode character whose UnicodeScalars `characterSet` contains.
+    */
     public static func character(in characterSet: CharacterSet) -> Pattern {
         return Pattern { text in
             guard !text.isEmpty else { return nil }

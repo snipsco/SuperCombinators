@@ -23,6 +23,9 @@ protocol PatternProtocol: class {
 
 extension PatternProtocol {
 
+    /**
+     Captures the string parsed using `self`.
+    */
     public var stringParser: Parser<String> {
         return Parser<String> { text in
             guard let result = self.parse(text) else { return nil }
@@ -34,6 +37,11 @@ extension PatternProtocol {
         }
     }
 
+    /**
+     Parses the using the left-hand parser.
+     If the result exists, then return that.
+     Otherwise, attempt using right-hand pattern.
+    */
     public func matches(_ text: String) -> Bool {
         guard let result = parse(text) else { return false }
         return text.endIndex == Self.extractSuffixIndex(from: result)

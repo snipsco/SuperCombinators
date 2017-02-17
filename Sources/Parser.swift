@@ -6,6 +6,9 @@
 //
 //
 
+/**
+ Contains the semantics and end index of a prefix of a string.
+*/
 public struct ParseResult<Value> {
 
     public let value: Value
@@ -17,16 +20,25 @@ public struct ParseResult<Value> {
     }
 }
 
+/**
+ Parses a prefix of a string, returning the prefix's end index and value on success.
+*/
 public final class Parser<Value> {
 
     public typealias Result = ParseResult<Value>
 
+    /**
+     Parses a prefix of a string, returning the prefix's end index and value on success.
+    */
     public let parse: (String) -> Result?
 
     public init(parse: @escaping (String) -> Result?) {
         self.parse = parse
     }
 
+    /**
+     Parses a prefix of a string, returning the string's value only if it exists for the whole string.
+     */
     public func parseAll(_ text: String) -> Value? {
         guard let result = parse(text), text.endIndex == result.suffixIndex else { return nil }
         return result.value
@@ -35,18 +47,16 @@ public final class Parser<Value> {
 
 extension Parser {
 
+    /**
+     Creates a `Parser` that parses an empty prefix and returns the specified value.
+    */
     public static func pure(_ value: Value) -> Parser {
         return Parser { text in Result(value: value, suffixIndex: text.startIndex) }
     }
 
-    public static func fail(message: String? = nil) -> Parser {
-        if let message = message {
-            return Parser { _ in print(message); return nil }
-        } else {
-            return Parser { _ in return nil }
-        }
-    }
-
+    /**
+     Creates a `Parser` that always succeeds, giving the result of `self.parse` if it exists.
+    */
     var optional: Parser<Value?> {
         return Parser<Value?> { text in
             let result = self.parse(text)
@@ -57,6 +67,9 @@ extension Parser {
         }
     }
 
+    /**
+     Creates a `Parser` that parses the same prefix as `self`, and contains the transformed value.
+    */
     public func map<NewValue>(_ transform: @escaping (Value) -> NewValue) -> Parser<NewValue> {
         return Parser<NewValue> { text in
             guard let result = self.parse(text) else { return nil }
@@ -67,6 +80,12 @@ extension Parser {
         }
     }
 
+    /**
+     Creates a `Parser` that 
+     1. parses the same prefix as `self`
+     2. creates a new parser using `transform`
+     3. parses the prefix of the newly created suffix using the new parser
+    */
     public func flatMap<NewValue>(_ transform: @escaping (Value) -> Parser<NewValue>) -> Parser<NewValue> {
         return Parser<NewValue> { text in
             guard let r0 = self.parse(text) else { return nil }
@@ -74,6 +93,9 @@ extension Parser {
         }
     }
 
+    /**
+     Returns the result of 'self.parse' if the extracted value passes the `test`.
+    */
     public func test(_ test: @escaping (Value) -> Bool) -> Parser {
         return Parser { characters in
             guard let result = self.parse(characters), test(result.value) else { return nil }
@@ -84,10 +106,16 @@ extension Parser {
 
 // MARK: Apply
 
+/**
+ Parses the text first using the left parser, then the right, and calls the value of the right-hand result on the value of the left-hand result.
+*/
 public func / <A, B>(lhs: Parser<A>, rhs: Parser<(A) -> B>) -> Parser<B> {
     return lhs.and(rhs).map { $1($0) }
 }
 
+/**
+ Parses the text first using the left parser, then the right, and calls the value of the left-hand result on the value of the right-hand result.
+*/
 public func / <A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
     return lhs.and(rhs).map { $0($1) }
 }

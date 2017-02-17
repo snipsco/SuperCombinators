@@ -6,8 +6,14 @@
 //
 //
 
+/**
+ Parses a prefix of a string, returning the prefix's end index on success.
+*/
 public final class Pattern {
 
+    /**
+     Parses a prefix of a string, returning the prefix's end index on success.
+    */
     public let parse: (String) -> String.Index?
 
     public init(parse: @escaping (String) -> String.Index?) {
@@ -17,12 +23,18 @@ public final class Pattern {
 
 extension Parser {
 
+    /**
+     Creates a pattern that parses the prefix of a string using `self.parse` and ignores the value.
+    */
     public var pattern: Pattern {
         return Pattern { text in
             return self.parse(text)?.suffixIndex
         }
     }
 
+    /**
+     Create a parser that parses the prefix of a string using `pattern.parse` and returns `value` as the value.
+    */
     public convenience init(_ pattern: Pattern, _ value: Value) {
         self.init { text in
             guard let suffixIndex = pattern.parse(text) else { return nil }
@@ -30,6 +42,11 @@ extension Parser {
         }
     }
 
+    /**
+     Create a parser that parses the prefix of a string using `pattern.parse` and returns `value` as the value.
+     
+     Returns an array of values that can be parsed by `self` given that their strings are separated by substrings matched by `separator`.
+     */
     public func separated(by separator: Pattern) -> Parser<[Value]> {
         return Parser<[Value]> { text in
             guard let first = self.parse(text) else { return nil }
@@ -52,6 +69,9 @@ extension Parser {
 
 extension Pattern {
 
+    /**
+     Create a pattern that matches the prefix of a string if it is equal to the prefix provided.
+    */
     public convenience init(prefix: String) {
         self.init { text in
             guard text.hasPrefix(prefix) else { return nil }
@@ -60,20 +80,33 @@ extension Pattern {
         }
     }
 
+    /**
+     Create a pattern that returns the prefix composed of `count` Characters, and fails if the input is not long enough.
+    */
     public convenience init(count: Int) {
         self.init { text in
             return text.index(text.startIndex, offsetBy: count, limitedBy: text.endIndex)
         }
     }
 
+    /**
+     Create a pattern that does not parse anything and never fails.
+    */
     public static var pure: Pattern {
         return Pattern { text in text.startIndex }
     }
 
+    /**
+     Create a pattern that fails on any string but "".
+    */
     public static var empty: Pattern {
         return Pattern { text in text.isEmpty ? text.endIndex : nil }
     }
 
+    /**
+     Create a pattern that parses using `self.parse`. If that fails, returns the whole text as suffix.
+     - Note: is equivalent to `self || .pure`
+    */
     public var optional: Pattern {
         return Pattern { text in self.parse(text) ?? text.startIndex }
     }

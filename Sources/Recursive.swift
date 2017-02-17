@@ -24,6 +24,11 @@ private final class RecursiveParser<Value> {
 
 extension Parser {
 
+    /**
+     Creates a `Parser` for a recursive grammar.
+     
+     - Note: Within the scope of the closure, the input parser's `parse` method is not defined, and will crash if called.
+    */
     public static func recursive(generateParser: @escaping (Parser) -> Parser) -> Parser {
         let rec = RecursiveParser(generateParser: generateParser)
         return Parser { text in
@@ -50,6 +55,11 @@ private final class RecursivePattern {
 
 extension Pattern {
 
+    /**
+     Creates a `Pattern` for a recursive grammar.
+
+     - Note: Within the scope of the closure, the input pattern's `parse` method is not defined, and will crash if called.
+     */
     public static func recursive(generateParser: @escaping (Pattern) -> Pattern) -> Pattern {
         let rec = RecursivePattern(generateParser: generateParser)
         return Pattern { text in
