@@ -11,6 +11,38 @@
 		A64BF2471E5734C100FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A64BF2481E5734C200FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A64BF2491E5734C200FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A64BF2521E573ADD00FAF67C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24A1E573ADD00FAF67C /* Parser.swift */; };
+		A64BF2531E573ADD00FAF67C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24A1E573ADD00FAF67C /* Parser.swift */; };
+		A64BF2541E573ADD00FAF67C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24A1E573ADD00FAF67C /* Parser.swift */; };
+		A64BF2551E573ADD00FAF67C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24A1E573ADD00FAF67C /* Parser.swift */; };
+		A64BF2561E573ADD00FAF67C /* Parser+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */; };
+		A64BF2571E573ADD00FAF67C /* Parser+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */; };
+		A64BF2581E573ADD00FAF67C /* Parser+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */; };
+		A64BF2591E573ADD00FAF67C /* Parser+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */; };
+		A64BF25A1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */; };
+		A64BF25B1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */; };
+		A64BF25C1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */; };
+		A64BF25D1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */; };
+		A64BF25E1E573ADD00FAF67C /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24D1E573ADD00FAF67C /* Pattern.swift */; };
+		A64BF25F1E573ADD00FAF67C /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24D1E573ADD00FAF67C /* Pattern.swift */; };
+		A64BF2601E573ADD00FAF67C /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24D1E573ADD00FAF67C /* Pattern.swift */; };
+		A64BF2611E573ADD00FAF67C /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24D1E573ADD00FAF67C /* Pattern.swift */; };
+		A64BF2621E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */; };
+		A64BF2631E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */; };
+		A64BF2641E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */; };
+		A64BF2651E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */; };
+		A64BF2661E573ADD00FAF67C /* Pattern+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */; };
+		A64BF2671E573ADD00FAF67C /* Pattern+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */; };
+		A64BF2681E573ADD00FAF67C /* Pattern+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */; };
+		A64BF2691E573ADD00FAF67C /* Pattern+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */; };
+		A64BF26A1E573ADD00FAF67C /* PatternProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */; };
+		A64BF26B1E573ADD00FAF67C /* PatternProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */; };
+		A64BF26C1E573ADD00FAF67C /* PatternProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */; };
+		A64BF26D1E573ADD00FAF67C /* PatternProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */; };
+		A64BF26E1E573ADD00FAF67C /* Recursive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2511E573ADD00FAF67C /* Recursive.swift */; };
+		A64BF26F1E573ADD00FAF67C /* Recursive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2511E573ADD00FAF67C /* Recursive.swift */; };
+		A64BF2701E573ADD00FAF67C /* Recursive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2511E573ADD00FAF67C /* Recursive.swift */; };
+		A64BF2711E573ADD00FAF67C /* Recursive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2511E573ADD00FAF67C /* Recursive.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +55,14 @@
 		A64BF2431E57348800FAF67C /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		A64BF2441E57348800FAF67C /* Info-watchOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-watchOS.plist"; sourceTree = "<group>"; };
 		A64BF2451E57348800FAF67C /* SuperCombinators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperCombinators.h; sourceTree = "<group>"; };
+		A64BF24A1E573ADD00FAF67C /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Operators.swift"; sourceTree = "<group>"; };
+		A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Pattern.swift"; sourceTree = "<group>"; };
+		A64BF24D1E573ADD00FAF67C /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pattern+Foundation.swift"; sourceTree = "<group>"; };
+		A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pattern+Operators.swift"; sourceTree = "<group>"; };
+		A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternProtocol.swift; sourceTree = "<group>"; };
+		A64BF2511E573ADD00FAF67C /* Recursive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recursive.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +119,14 @@
 		A64BF2401E57348800FAF67C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A64BF24A1E573ADD00FAF67C /* Parser.swift */,
+				A64BF24B1E573ADD00FAF67C /* Parser+Operators.swift */,
+				A64BF24C1E573ADD00FAF67C /* Parser+Pattern.swift */,
+				A64BF24D1E573ADD00FAF67C /* Pattern.swift */,
+				A64BF24E1E573ADD00FAF67C /* Pattern+Foundation.swift */,
+				A64BF24F1E573ADD00FAF67C /* Pattern+Operators.swift */,
+				A64BF2501E573ADD00FAF67C /* PatternProtocol.swift */,
+				A64BF2511E573ADD00FAF67C /* Recursive.swift */,
 				A64BF2411E57348800FAF67C /* Info-iOS.plist */,
 				A64BF2421E57348800FAF67C /* Info-macOS.plist */,
 				A64BF2431E57348800FAF67C /* Info-tvOS.plist */,
@@ -209,21 +257,25 @@
 					A64BF20F1E5733BA00FAF67C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 624UGX87P6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A64BF21D1E5733C600FAF67C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 624UGX87P6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A64BF22A1E5733D300FAF67C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 624UGX87P6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A64BF2371E5733E400FAF67C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 624UGX87P6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -284,6 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64BF2661E573ADD00FAF67C /* Pattern+Operators.swift in Sources */,
+				A64BF25A1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */,
+				A64BF26E1E573ADD00FAF67C /* Recursive.swift in Sources */,
+				A64BF2561E573ADD00FAF67C /* Parser+Operators.swift in Sources */,
+				A64BF25E1E573ADD00FAF67C /* Pattern.swift in Sources */,
+				A64BF26A1E573ADD00FAF67C /* PatternProtocol.swift in Sources */,
+				A64BF2521E573ADD00FAF67C /* Parser.swift in Sources */,
+				A64BF2621E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +351,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64BF2671E573ADD00FAF67C /* Pattern+Operators.swift in Sources */,
+				A64BF25B1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */,
+				A64BF26F1E573ADD00FAF67C /* Recursive.swift in Sources */,
+				A64BF2571E573ADD00FAF67C /* Parser+Operators.swift in Sources */,
+				A64BF25F1E573ADD00FAF67C /* Pattern.swift in Sources */,
+				A64BF26B1E573ADD00FAF67C /* PatternProtocol.swift in Sources */,
+				A64BF2531E573ADD00FAF67C /* Parser.swift in Sources */,
+				A64BF2631E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +366,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64BF2681E573ADD00FAF67C /* Pattern+Operators.swift in Sources */,
+				A64BF25C1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */,
+				A64BF2701E573ADD00FAF67C /* Recursive.swift in Sources */,
+				A64BF2581E573ADD00FAF67C /* Parser+Operators.swift in Sources */,
+				A64BF2601E573ADD00FAF67C /* Pattern.swift in Sources */,
+				A64BF26C1E573ADD00FAF67C /* PatternProtocol.swift in Sources */,
+				A64BF2541E573ADD00FAF67C /* Parser.swift in Sources */,
+				A64BF2641E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +381,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64BF2691E573ADD00FAF67C /* Pattern+Operators.swift in Sources */,
+				A64BF25D1E573ADD00FAF67C /* Parser+Pattern.swift in Sources */,
+				A64BF2711E573ADD00FAF67C /* Recursive.swift in Sources */,
+				A64BF2591E573ADD00FAF67C /* Parser+Operators.swift in Sources */,
+				A64BF2611E573ADD00FAF67C /* Pattern.swift in Sources */,
+				A64BF26D1E573ADD00FAF67C /* PatternProtocol.swift in Sources */,
+				A64BF2551E573ADD00FAF67C /* Parser.swift in Sources */,
+				A64BF2651E573ADD00FAF67C /* Pattern+Foundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

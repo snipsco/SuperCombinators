@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A64BF22A1E5733D300FAF67C"
-               BuildableName = "SuperCombinators tvOS.framework"
+               BuildableName = "SuperCombinators.framework"
                BlueprintName = "SuperCombinators tvOS"
                ReferencedContainer = "container:SuperCombinators.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF22A1E5733D300FAF67C"
-            BuildableName = "SuperCombinators tvOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators tvOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF22A1E5733D300FAF67C"
-            BuildableName = "SuperCombinators tvOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators tvOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>

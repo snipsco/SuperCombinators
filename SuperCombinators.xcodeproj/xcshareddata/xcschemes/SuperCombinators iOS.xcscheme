@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A64BF20F1E5733BA00FAF67C"
-               BuildableName = "SuperCombinators iOS.framework"
+               BuildableName = "SuperCombinators.framework"
                BlueprintName = "SuperCombinators iOS"
                ReferencedContainer = "container:SuperCombinators.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF20F1E5733BA00FAF67C"
-            BuildableName = "SuperCombinators iOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators iOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF20F1E5733BA00FAF67C"
-            BuildableName = "SuperCombinators iOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators iOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>

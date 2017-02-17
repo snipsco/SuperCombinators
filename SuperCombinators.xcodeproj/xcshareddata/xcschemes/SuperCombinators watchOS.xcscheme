@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A64BF21D1E5733C600FAF67C"
-               BuildableName = "SuperCombinators watchOS.framework"
+               BuildableName = "SuperCombinators.framework"
                BlueprintName = "SuperCombinators watchOS"
                ReferencedContainer = "container:SuperCombinators.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF21D1E5733C600FAF67C"
-            BuildableName = "SuperCombinators watchOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators watchOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A64BF21D1E5733C600FAF67C"
-            BuildableName = "SuperCombinators watchOS.framework"
+            BuildableName = "SuperCombinators.framework"
             BlueprintName = "SuperCombinators watchOS"
             ReferencedContainer = "container:SuperCombinators.xcodeproj">
          </BuildableReference>
