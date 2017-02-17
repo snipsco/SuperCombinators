@@ -99,7 +99,7 @@ At the time of writing, there are already a number of parser combinator librarie
 
 This framework attempts to solve these issues in the following way:
 
-1. Operator confusion
+### Operator confusion
 
 There are only two operators declared in this framework:
 
@@ -114,7 +114,7 @@ The other operators used in this library are native Swift operators, with famili
 
 An additional help is the introduction of a `Pattern` class, that matches the prefix of a string, but does not contain any value. This makes ignoring a part of the parsing explicit, allowing Swift to automatically extract the right values when combining parsers.
 
-2. Memory leaks
+### Memory leaks
 
 Memory leaks are avoided by adding a private class whose `parse` function does not hold a strong reference to itself encapsulated in a `Parser`.
 
