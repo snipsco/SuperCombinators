@@ -132,7 +132,7 @@ do {
             let prefix: Parser<String> = (stringChars + escaped).map(+)
                 || stringChars
                 || escaped
-            return (prefix + escaped).map(+)
+            return (prefix + text).map(+)
                 || prefix
         }
 
