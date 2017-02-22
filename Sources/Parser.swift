@@ -39,7 +39,7 @@ public final class Parser<Value> {
     /**
      Parses a prefix of a string, returning the string's value only if it exists for the whole string.
      */
-    public func parseAll(_ text: String) -> Value? {
+    public func parse(_ text: String) -> Value? {
         guard let result = parsePrefix(text), text.endIndex == result.suffixIndex else { return nil }
         return result.value
     }

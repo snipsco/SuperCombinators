@@ -180,6 +180,6 @@ do {
 
 let myJSON = "{ \"hello\": [ 123, {}, [ \"\\t\"]] }"
 
-print(json.parseAll(myJSON)!)
+print(json.parse(myJSON)!)
 
 //: [Next](@next)

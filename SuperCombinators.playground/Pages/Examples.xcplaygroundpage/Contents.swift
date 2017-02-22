@@ -7,7 +7,7 @@ let int = (minus.optional + digits)
     .stringParser
     .map { Int($0)! }
 
-print(int.parseAll("-123")! + int.parseAll("321")!)
+print(int.parse("-123")! + int.parse("321")!)
 // prints 198
 
 
@@ -18,7 +18,7 @@ let notQuote = Pattern.characters(
 )
 let string = "\"" + notQuote.stringParser + "\""
 
-print(string.parseAll("\"bla\"")!)
+print(string.parse("\"bla\"")!)
 // prints bla
 
 
@@ -30,7 +30,7 @@ let cell = string.map { $0 as Any } || int.map { $0 as Any }
 let row = cell.separated(by: ",")
 // A CSV file is a possibly empty sequence of rows with a "\n" at the end
 let csv = (row + "\n")*
-print(csv.parseAll("\"a\",1\n\"b,c\",23\n")!)
+print(csv.parse("\"a\",1\n\"b,c\",23\n")!)
 // prints [["a", 1], ["b,c", 23]]
 
 
@@ -38,5 +38,5 @@ print(csv.parseAll("\"a\",1\n\"b,c\",23\n")!)
 let sum = Parser<Int>.recursive { sum in
     return (int + "+" + sum).map(+) || int
 }
-print(sum.parseAll("1+2+3")!)
+print(sum.parse("1+2+3")!)
 
