@@ -14,7 +14,7 @@ extension Parser {
     public func then(_ pattern: Pattern) -> Parser {
         return Parser { text in
             guard
-                let r0 = self.parse(text),
+                let r0 = self.parsePrefix(text),
                 let s1 = pattern.parseSuffix(of: text, after: r0.suffixIndex)
                 else { return nil }
 
@@ -29,7 +29,7 @@ extension Parser {
     public func and<OtherValue>(_ other: Parser<OtherValue>) -> Parser<(Value, OtherValue)> {
         return Parser<(Value, OtherValue)> { text in
             guard
-                let r0 = self.parse(text),
+                let r0 = self.parsePrefix(text),
                 let r1 = other.parseSuffix(of: text, after: r0.suffixIndex)
                 else { return nil }
 
@@ -49,7 +49,7 @@ extension Pattern {
     public func then<NewValue>(_ parser: Parser<NewValue>) -> Parser<NewValue> {
         return Parser<NewValue> { text in
             guard
-                let s0 = self.parse(text),
+                let s0 = self.parsePrefix(text),
                 let r1 = parser.parseSuffix(of: text, after: s0)
                 else { return nil }
             return r1
@@ -62,7 +62,7 @@ extension Pattern {
     public func then(_ pattern: Pattern) -> Pattern {
         return Pattern { text in
             guard
-                let s0 = self.parse(text),
+                let s0 = self.parsePrefix(text),
                 let s1 = pattern.parseSuffix(of: text, after: s0)
                 else { return nil }
             return s1

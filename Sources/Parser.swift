@@ -30,17 +30,17 @@ public final class Parser<Value> {
     /**
      Parses a prefix of a string, returning the prefix's end index and value on success.
     */
-    public let parse: (String) -> Result?
+    public let parsePrefix: (String) -> Result?
 
-    public init(parse: @escaping (String) -> Result?) {
-        self.parse = parse
+    public init(parsePrefix: @escaping (String) -> Result?) {
+        self.parsePrefix = parsePrefix
     }
 
     /**
      Parses a prefix of a string, returning the string's value only if it exists for the whole string.
      */
     public func parseAll(_ text: String) -> Value? {
-        guard let result = parse(text), text.endIndex == result.suffixIndex else { return nil }
+        guard let result = parsePrefix(text), text.endIndex == result.suffixIndex else { return nil }
         return result.value
     }
 }
@@ -59,7 +59,7 @@ extension Parser {
     */
     var optional: Parser<Value?> {
         return Parser<Value?> { text in
-            let result = self.parse(text)
+            let result = self.parsePrefix(text)
             return ParseResult<Value?>(
                 value: result?.value,
                 suffixIndex: result?.suffixIndex ?? text.startIndex
@@ -72,7 +72,7 @@ extension Parser {
     */
     public func map<NewValue>(_ transform: @escaping (Value) -> NewValue) -> Parser<NewValue> {
         return Parser<NewValue> { text in
-            guard let result = self.parse(text) else { return nil }
+            guard let result = self.parsePrefix(text) else { return nil }
             return ParseResult<NewValue>(
                 value: transform(result.value),
                 suffixIndex: result.suffixIndex
@@ -88,7 +88,7 @@ extension Parser {
     */
     public func flatMap<NewValue>(_ transform: @escaping (Value) -> Parser<NewValue>) -> Parser<NewValue> {
         return Parser<NewValue> { text in
-            guard let r0 = self.parse(text) else { return nil }
+            guard let r0 = self.parsePrefix(text) else { return nil }
             return transform(r0.value).parseSuffix(of: text, after: r0.suffixIndex)
         }
     }
@@ -98,7 +98,7 @@ extension Parser {
     */
     public func test(_ test: @escaping (Value) -> Bool) -> Parser {
         return Parser { characters in
-            guard let result = self.parse(characters), test(result.value) else { return nil }
+            guard let result = self.parsePrefix(characters), test(result.value) else { return nil }
             return result
         }
     }

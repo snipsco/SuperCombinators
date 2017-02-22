@@ -14,10 +14,10 @@ public final class Pattern {
     /**
      Parses a prefix of a string, returning the prefix's end index on success.
     */
-    public let parse: (String) -> String.Index?
+    public let parsePrefix: (String) -> String.Index?
 
-    public init(parse: @escaping (String) -> String.Index?) {
-        self.parse = parse
+    public init(parsePrefix: @escaping (String) -> String.Index?) {
+        self.parsePrefix = parsePrefix
     }
 }
 
@@ -28,7 +28,7 @@ extension Parser {
     */
     public var pattern: Pattern {
         return Pattern { text in
-            return self.parse(text)?.suffixIndex
+            return self.parsePrefix(text)?.suffixIndex
         }
     }
 
@@ -37,7 +37,7 @@ extension Parser {
     */
     public convenience init(_ pattern: Pattern, _ value: Value) {
         self.init { text in
-            guard let suffixIndex = pattern.parse(text) else { return nil }
+            guard let suffixIndex = pattern.parsePrefix(text) else { return nil }
             return Result(value: value, suffixIndex: suffixIndex)
         }
     }
@@ -49,7 +49,7 @@ extension Parser {
      */
     public func separated(by separator: Pattern) -> Parser<[Value]> {
         return Parser<[Value]> { text in
-            guard let first = self.parse(text) else { return nil }
+            guard let first = self.parsePrefix(text) else { return nil }
 
             let combined = separator + self
 
@@ -108,7 +108,7 @@ extension Pattern {
      - Note: is equivalent to `self || .pure`
     */
     public var optional: Pattern {
-        return Pattern { text in self.parse(text) ?? text.startIndex }
+        return Pattern { text in self.parsePrefix(text) ?? text.startIndex }
     }
 }
 

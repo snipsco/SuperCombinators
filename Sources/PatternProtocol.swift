@@ -13,9 +13,9 @@ protocol PatternProtocol: class {
 
     associatedtype Result
 
-    var parse: (String) -> Result? { get }
+    var parsePrefix: (String) -> Result? { get }
 
-    init(parse: @escaping (String) -> Result?)
+    init(parsePrefix: @escaping (String) -> Result?)
 
     static func extractSuffixIndex(from result: Result) -> String.Index
     static func result(_ result: Result, with newSuffixIndex: String.Index) -> Result
@@ -28,7 +28,7 @@ extension PatternProtocol {
     */
     public var stringParser: Parser<String> {
         return Parser<String> { text in
-            guard let result = self.parse(text) else { return nil }
+            guard let result = self.parsePrefix(text) else { return nil }
             let suffixIndex = Self.extractSuffixIndex(from: result)
             return ParseResult<String>(
                 value: text.substring(to: suffixIndex),
@@ -43,18 +43,18 @@ extension PatternProtocol {
      Otherwise, attempt using right-hand pattern.
     */
     public func matches(_ text: String) -> Bool {
-        guard let result = parse(text) else { return false }
+        guard let result = parsePrefix(text) else { return false }
         return text.endIndex == Self.extractSuffixIndex(from: result)
     }
 
     public func or(_ other: Self) -> Self {
-        return Self { text in self.parse(text) ?? other.parse(text) }
+        return Self { text in self.parsePrefix(text) ?? other.parsePrefix(text) }
     }
 
     public static func either(_ patterns: Self...) -> Self {
         return Self { text in
             for pattern in patterns {
-                if let result = pattern.parse(text) { return result }
+                if let result = pattern.parsePrefix(text) { return result }
             }
             return nil
         }
@@ -89,7 +89,7 @@ extension PatternProtocol {
 
     func parseSuffix(of text: String, after substringIndex: String.Index) -> Result? {
         let substring = text.substring(from: substringIndex)
-        guard let result = parse(substring) else { return nil }
+        guard let result = parsePrefix(substring) else { return nil }
         let firstSuffixIndex = Self.extractSuffixIndex(from: result)
         let suffixIndex0 = String.UTF16View.Index(firstSuffixIndex, within: substring.utf16)
         let substringPrefixDistance = substring.utf16.distance(from: substring.utf16.startIndex, to: suffixIndex0)

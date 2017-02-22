@@ -67,7 +67,7 @@ extension Parser {
     */
     public func oneOrMore() -> Parser<[Value]> {
         return Parser<[Value]> { text in
-            guard let first = self.parse(text) else { return nil }
+            guard let first = self.parsePrefix(text) else { return nil }
 
             var values = [first.value]
             var suffixIndex = first.suffixIndex

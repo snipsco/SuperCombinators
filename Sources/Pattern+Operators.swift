@@ -56,7 +56,7 @@ extension Pattern {
     */
     public func oneOrMore() -> Pattern {
         return Pattern { text in
-            guard var suffixIndex = self.parse(text) else { return nil }
+            guard var suffixIndex = self.parsePrefix(text) else { return nil }
 
             while let next = self.parseSuffix(of: text, after: suffixIndex) {
                 suffixIndex = next
