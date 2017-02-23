@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A63416451E5EE0D10009C8B5 /* SuperCombinators.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64BF2101E5733BA00FAF67C /* SuperCombinators.framework */; };
+		A634164C1E5EE5720009C8B5 /* PatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A634164B1E5EE5720009C8B5 /* PatternTests.swift */; };
 		A64BF2461E5734C100FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A64BF2471E5734C100FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A64BF2481E5734C200FAF67C /* SuperCombinators.h in Headers */ = {isa = PBXBuildFile; fileRef = A64BF2451E57348800FAF67C /* SuperCombinators.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,7 +47,20 @@
 		A64BF2711E573ADD00FAF67C /* Recursive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64BF2511E573ADD00FAF67C /* Recursive.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A63416461E5EE0D10009C8B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A64BF1F71E5732B500FAF67C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A64BF20F1E5733BA00FAF67C;
+			remoteInfo = "SuperCombinators iOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A63416401E5EE0D10009C8B5 /* SuperCombinatorsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperCombinatorsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63416441E5EE0D10009C8B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A634164B1E5EE5720009C8B5 /* PatternTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternTests.swift; sourceTree = "<group>"; };
 		A64BF2101E5733BA00FAF67C /* SuperCombinators.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuperCombinators.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A64BF21E1E5733C600FAF67C /* SuperCombinators.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuperCombinators.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A64BF22B1E5733D300FAF67C /* SuperCombinators.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuperCombinators.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +81,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A634163D1E5EE0D10009C8B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63416451E5EE0D10009C8B5 /* SuperCombinators.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A64BF20C1E5733BA00FAF67C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,10 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A63416411E5EE0D10009C8B5 /* SuperCombinatorsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A634164B1E5EE5720009C8B5 /* PatternTests.swift */,
+				A63416441E5EE0D10009C8B5 /* Info.plist */,
+			);
+			path = SuperCombinatorsTests;
+			sourceTree = "<group>";
+		};
 		A64BF1F61E5732B500FAF67C = {
 			isa = PBXGroup;
 			children = (
 				A64BF2401E57348800FAF67C /* Sources */,
+				A63416411E5EE0D10009C8B5 /* SuperCombinatorsTests */,
 				A64BF2111E5733BA00FAF67C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +145,7 @@
 				A64BF21E1E5733C600FAF67C /* SuperCombinators.framework */,
 				A64BF22B1E5733D300FAF67C /* SuperCombinators.framework */,
 				A64BF2381E5733E400FAF67C /* SuperCombinators.framework */,
+				A63416401E5EE0D10009C8B5 /* SuperCombinatorsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +208,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A634163F1E5EE0D10009C8B5 /* SuperCombinatorsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A634164A1E5EE0D10009C8B5 /* Build configuration list for PBXNativeTarget "SuperCombinatorsTests" */;
+			buildPhases = (
+				A634163C1E5EE0D10009C8B5 /* Sources */,
+				A634163D1E5EE0D10009C8B5 /* Frameworks */,
+				A634163E1E5EE0D10009C8B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A63416471E5EE0D10009C8B5 /* PBXTargetDependency */,
+			);
+			name = SuperCombinatorsTests;
+			productName = SuperCombinatorsTests;
+			productReference = A63416401E5EE0D10009C8B5 /* SuperCombinatorsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A64BF20F1E5733BA00FAF67C /* SuperCombinators iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A64BF2181E5733BA00FAF67C /* Build configuration list for PBXNativeTarget "SuperCombinators iOS" */;
@@ -252,8 +304,15 @@
 		A64BF1F71E5732B500FAF67C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
+					A634163F1E5EE0D10009C8B5 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 624UGX87P6;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
 					A64BF20F1E5733BA00FAF67C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 624UGX87P6;
@@ -296,11 +355,19 @@
 				A64BF21D1E5733C600FAF67C /* SuperCombinators watchOS */,
 				A64BF22A1E5733D300FAF67C /* SuperCombinators tvOS */,
 				A64BF2371E5733E400FAF67C /* SuperCombinators macOS */,
+				A634163F1E5EE0D10009C8B5 /* SuperCombinatorsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A634163E1E5EE0D10009C8B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A64BF20E1E5733BA00FAF67C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +399,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A634163C1E5EE0D10009C8B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A634164C1E5EE5720009C8B5 /* PatternTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A64BF20B1E5733BA00FAF67C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,7 +469,118 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A63416471E5EE0D10009C8B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A64BF20F1E5733BA00FAF67C /* SuperCombinators iOS */;
+			targetProxy = A63416461E5EE0D10009C8B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A63416481E5EE0D10009C8B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 624UGX87P6;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = SuperCombinatorsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.snips.SuperCombinatorsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A63416491E5EE0D10009C8B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 624UGX87P6;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = SuperCombinatorsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.snips.SuperCombinatorsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		A64BF1FB1E5732B500FAF67C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -913,6 +1099,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A634164A1E5EE0D10009C8B5 /* Build configuration list for PBXNativeTarget "SuperCombinatorsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A63416481E5EE0D10009C8B5 /* Debug */,
+				A63416491E5EE0D10009C8B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A64BF1FA1E5732B500FAF67C /* Build configuration list for PBXProject "SuperCombinators" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

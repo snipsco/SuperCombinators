@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A634163F1E5EE0D10009C8B5"
+               BuildableName = "SuperCombinatorsTests.xctest"
+               BlueprintName = "SuperCombinatorsTests"
+               ReferencedContainer = "container:SuperCombinators.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A64BF20F1E5733BA00FAF67C"
+            BuildableName = "SuperCombinators.framework"
+            BlueprintName = "SuperCombinators iOS"
+            ReferencedContainer = "container:SuperCombinators.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
