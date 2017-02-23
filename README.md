@@ -19,7 +19,7 @@ private extension CharacterSet {
 let notQuote = Pattern.characters(in: .stringBody).stringParser
 let cellBody = Pattern.characters(in: .cellBody).stringParser
 
-let cell = "\"" + notQuote + "\"" || cellBody
+let cell = "\"" & notQuote & "\"" || cellBody
 
 let row = cell.separated(by: ",")
 let csv = row.separated(by: "\n")
@@ -37,16 +37,16 @@ The above API using `Parser.separated(by:)` is useful when you don't want to req
 If instead you wanted to require a newline at the end of the file, you could do it like so:
 
 ``` Swift
-let csv = (row + "\n")+ // At least one line required
+let csv = (row & "\n")+ // At least one line required
 ```
 
 or
 
 ``` Swift
-let csv = (row + "\n")* // Empty file accepted
+let csv = (row & "\n")* // Empty file accepted
 ```
 
-Note: the `a.separated(by: b)` syntax is equivalend to `a + (b + a)*.map { [$0] + $1 }`
+Note: the `a.separated(by: b)` syntax is equivalent to `a & (b & a)*.map { [$0] + $1 }`
 
 ## Example 2: Simple Calculator
 
@@ -62,21 +62,21 @@ let expression = Parser<Int>.recursive { expression -> Parser<Int> in
         .stringParser
         .map { Int($0)! }
 
-    let factor = int || "(" + expression + ")"
+    let factor = int || "(" & expression & ")"
 
     // * and / have higher precedence, and should be processed first
     let term = Parser<Int>.recursive { term -> Parser<Int> in              
 
-        let multiply = factor + " * " + term                               
-        let divide = factor + " / " + term
+        let multiply = factor & " * " & term                               
+        let divide = factor & " / " & term
 
         return multiply.map(*)
             || divide.map(/)
             || factor
     }
 
-    let add = term + " + " + expression
-    let subtract = term + " - " + expression
+    let add = term & " + " & expression
+    let subtract = term & " - " & expression
 
     return add.map(+)
         || subtract.map(-)
