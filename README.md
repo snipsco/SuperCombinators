@@ -24,7 +24,7 @@ let cell = "\"" & notQuote & "\"" || cellBody
 let row = cell.separated(by: ",")
 let csv = row.separated(by: "\n")
 
-csv.parseAll("11,\"one\"\n2,\"two\"")
+csv.parse("11,\"one\"\n2,\"two\"")
 ```
 
 1. You can use the familiar CharacterSet to match a prefix of a string
@@ -83,8 +83,8 @@ let expression = Parser<Int>.recursive { expression -> Parser<Int> in
         || term
 }
 
-expression.parseAll("((3 + 3) * 4 - 6) / 2")
-expression.parseAll("(3 + 3) * 4 - 6 / 2")
+expression.parse("((3 + 3) * 4 - 6) / 2")
+expression.parse("(3 + 3) * 4 - 6 / 2")
 
 ```
 
