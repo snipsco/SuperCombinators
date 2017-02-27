@@ -46,4 +46,19 @@ extension Pattern {
             }
         }
     }
+
+    /**
+     Matches all unicode characters `characterSet` does not contain.
+     */
+    public convenience init(regularExpression: NSRegularExpression) {
+        self.init { text in
+            let optionalRange = text.range(
+                of: regularExpression.pattern,
+                options: .regularExpression
+            )
+            guard let range = optionalRange else { return nil }
+            assert(range.lowerBound == text.startIndex)
+            return range.upperBound
+        }
+    }
 }

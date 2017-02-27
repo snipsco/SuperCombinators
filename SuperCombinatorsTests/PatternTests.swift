@@ -54,5 +54,11 @@ class PatternTests: XCTestCase {
         XCTAssert(bracketed.matches("(()())"))
         XCTAssert(bracketed.matches("(())(())()"))
     }
+
+    func testRegularExpression() {
+        let hello = Pattern(
+            regularExpression: try! NSRegularExpression(pattern: "^hello", options: [])
+        )
+        XCTAssert(hello.matches("hello"))
     }
 }
