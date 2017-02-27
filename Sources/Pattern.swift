@@ -51,7 +51,7 @@ extension Parser {
         return Parser<[Value]> { text in
             guard let first = self.parsePrefix(text) else { return nil }
 
-            let combined = separator + self
+            let combined = separator & self
 
             var values = [first.value]
             var suffixIndex = first.suffixIndex

@@ -86,13 +86,13 @@ do {
 
         let e = "e" || "e+" || "E" || "E+"
         let digits = Pattern.characters(in: .decimalDigits).stringParser.map { Int($0)! }
-        let int = (Pattern(prefix: "-").optional + digits).stringParser.map { Int($0)! }
-        let exp = e + int
-        let frac = "." + digits
+        let int = (Pattern(prefix: "-").optional & digits).stringParser.map { Int($0)! }
+        let exp = e & int
+        let frac = "." & digits
         let numberFormat = Parser<NumberFormat>.either(
-            (int + frac + exp).map { NumberFormat.intFracExp($0.0, $0.1, $1) },
-            (int + frac).map(NumberFormat.intFrac),
-            (int + exp).map(NumberFormat.intExp),
+            (int & frac && exp).map(NumberFormat.intFracExp),
+            (int & frac).map(NumberFormat.intFrac),
+            (int & exp).map(NumberFormat.intExp),
             int.map(NumberFormat.int)
         )
         number = numberFormat.map { $0.value }
@@ -124,19 +124,19 @@ do {
                 Parser<String>("\\n", "\n"),
                 Parser<String>("\\r", "\r"),
                 Parser<String>("\\t", "\t"),
-                "\\u" + unicode
+                "\\u" & unicode
             )
         }
 
         let text = Parser<String>.recursive { text -> Parser<String> in
-            let prefix: Parser<String> = (stringChars + escaped).map(+)
+            let prefix: Parser<String> = (stringChars & escaped).map(+)
                 || stringChars
                 || escaped
-            return (prefix + text).map(+)
+            return (prefix & text).map(+)
                 || prefix
         }
 
-        string = "\"" + text + "\"" || Parser<String>("\"\"", "")
+        string = "\"" & text & "\"" || Parser<String>("\"\"", "")
     }
 
     let space = Pattern
@@ -146,26 +146,26 @@ do {
     json = Parser<Any>.recursive { json in
         let array: Parser<[Any]>
         do {
-            let empty = Parser<[Any]>("[" + space.optional + "]", [])
+            let empty = Parser<[Any]>("[" & space.optional & "]", [])
             let notEmpty = "["
-                + space
-                + json.separated(by: "," + space)
-                + space
-                + "]"
+                & space
+                & json.separated(by: "," & space)
+                & space
+                & "]"
             array = empty || notEmpty
         }
 
         let object: Parser<[String: Any]>
         do {
-            let empty = Parser<[String: Any]>("{" + space.optional + "}", [:])
-            let pair = string + space + ":" + space + json
-            let pairs = pair.separated(by: "," + space)
+            let empty = Parser<[String: Any]>("{" & space.optional & "}", [:])
+            let pair = string & space & ":" & space & json
+            let pairs = pair.separated(by: "," & space)
                 .map { pairs in [String: Any](pairs: pairs) }
             let notEmpty = "{"
-                + space
-                + pairs
-                + space
-                + "}"
+                & space
+                & pairs
+                & space
+                & "}"
             object = empty || notEmpty
         }
 

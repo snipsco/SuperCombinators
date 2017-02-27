@@ -6,6 +6,7 @@
 //
 //
 
+import Foundation
 import XCTest
 @testable import SuperCombinators
 
@@ -22,23 +23,23 @@ class PatternTests: XCTestCase {
         XCTAssert(a.matches("a"))
         XCTAssert(b.matches("b"))
 
-        XCTAssert((a + b).matches("ab"))
+        XCTAssert((a & b).matches("ab"))
 
         XCTAssert((a || b).matches("a"))
         XCTAssert((a || b).matches("b"))
 
         XCTAssertFalse(a.matches("c"))
         XCTAssertFalse(b.matches("c"))
-        XCTAssertFalse((a + b).matches("c"))
+        XCTAssertFalse((a & b).matches("c"))
         XCTAssertFalse((a || b).matches("c"))
     }
 
     func testRecursive() {
         let bracketed = Pattern.recursive { bracketed in
             let single = Pattern.recursive { single in
-                return "(" + single + ")" || "()"
+                return "(" & single & ")" || "()"
             }
-            return single+ || "(" + bracketed + ")"
+            return single+ || "(" & bracketed & ")"
         }
 
         XCTAssertFalse(bracketed.matches(""))
@@ -51,6 +52,7 @@ class PatternTests: XCTestCase {
         XCTAssert(bracketed.matches("(())"))
         XCTAssert(bracketed.matches("()()"))
         XCTAssert(bracketed.matches("(()())"))
-        XCTAssert(bracketed.matches("(())(())"))
+        XCTAssert(bracketed.matches("(())(())()"))
+    }
     }
 }
