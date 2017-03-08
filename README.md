@@ -64,7 +64,7 @@ A floating point number is:
 
 This gives us enough structure to define the building blocks of our parser.
 
-```
+``` Swift
 let digits = Pattern.characters(in: .decimalDigits)     // 1
 let uint = digits.stringParser.map { Int($0)! }         // 2, 3
 let ufloat0 = uint.map(Double.init)                     // 4
