@@ -1,14 +1,44 @@
 
 import SuperCombinators
 
-let digits = Pattern.characters(in: .decimalDigits)
-let minus: Pattern = "-"
-let int = (minus.optional & digits)
-    .stringParser
-    .map { Int($0)! }
+// basic floating point parser
 
-print(int.parse("-123")! & int.parse("321")!)
-// prints 198
+let digits = Pattern.characters(in: .decimalDigits)
+let uint = digits.stringParser.map { Int($0)! }
+let ufloat0 = uint.map(Double.init)
+
+let ufloat1 = ("." & ufloat0).map { float -> Double in
+    guard 0 < float else { return 0 }
+    let power = log10(float).rounded(.down) + 1
+    return float / pow(10, power)
+}
+
+let ufloat = (ufloat0.optional & ufloat1.optional)
+    .test { nil != $0 || nil != $1 }
+    .map { ($0 ?? 0) + ($1 ?? 0) }
+
+let float = ufloat || ("-" & ufloat).map { -$0 }
+
+
+float.parse("-.1")
+float.parse("123.456")
+
+
+// signed integer
+
+let int = uint || ("-" & uint).map { -$0 }
+
+print(int.parse("-123")! + int.parse("321")!)
+
+
+// generalizing signed numbers
+
+func signed<Signed: SignedNumber>(_ unsigned: Parser<Signed>) -> Parser<Signed> {
+    return unsigned || ("-" & unsigned).map { -$0 }
+}
+
+let float1 = signed(ufloat)
+let int1 = signed(uint.map { Int($0) })
 
 
 
