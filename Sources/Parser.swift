@@ -57,7 +57,7 @@ extension Parser {
     /**
      Creates a `Parser` that always succeeds, giving the result of `self.parse` if it exists.
     */
-    var optional: Parser<Value?> {
+    public var optional: Parser<Value?> {
         return Parser<Value?> { text in
             let result = self.parsePrefix(text)
             return ParseResult<Value?>(
