@@ -1,121 +1,101 @@
 # SuperCombinators
 
-A parser combinator framework written in Swift.
-SuperCombinators tries to optimise for legibility, and provides a number of ways to combine familiar Cocoa string parsing techniques with the power of parser combinators.
+A parser combinator framework written in Swift. SuperCombinators tries to optimise for legibility, and provides a number of ways to combine familiar Cocoa string parsing techniques with the power of parser combinators.
 
-## Example 1: CSV
+## Parser Combinators
 
-Here is an example implementation of a CSV parser:
+Parser combinators are composable parsers. In general, they traverse some prefix of a sequence, and return the value extracted and a way to carry on parsing the rest of the sequence.
 
-``` Swift
-import SuperCombinators
+## Why use SuperCombinators
 
-private extension CharacterSet {
+There are already a few open source parser combinator libraries in Swift. Why use this one?
 
-    static var stringBody = CharacterSet(charactersIn: "\"").inverted
-    static var cellBody = CharacterSet(charactersIn: ",\n").inverted
+1. Integration of familiar Cocoa parsing approaches such as using regular expressions and `CharacterSet`s
+2. Minimal use of custom operators
+3. Recursive parsing implementation without memory leaks
+
+## Framework Overview
+
+### Types
+
+There are two types that implement the concept of a parser, `Parser` and `Pattern`. Conceptually, `Pattern` only checks whether the prefix of a string is formatted correctly, whereas `Parser` also extracts some value from the prefix. This differentiation at the type level enhances readability and helps Swift infer the right thing while keeping code concise.
+
+### Operators
+
+#### Binary operators
+
+`||`, `&` and `&&` are overloaded in this library to provide a concise way to combine parsers and patterns. They mirror existing methods `.or`, `.and` and `also` on instances of `Pattern` and `Parser`. The Swift type system allows us to define these on all reasonable combinations of `Pattern` and `Parser`, and expect a reasonable result.
+
+Conceptually, the **or** operator attempts to use the result of the left operand and, if that fails, attempts to use the result of the right operand. Naturally, the types of the inputs have to be the same, and are the same as the resulting output.
+
+The **and** operator attempts to parse the string first using the left operand, then, on the remainder of the string, using the right operand, succeeding only if both succeed.
+
+The **also** operator is useful when combining together more than two parsers. Instead of nesting 2-tuples, by using the `&` operator, you can use the `&&` operator to create a parser of a flat tuple of the appropriate number of elements.
+
+#### Custom Postfix Operators
+
+This framework defines two custom operators: `postfix +` and `postfix *`
+
+These mirror the familiar regex quantifiers, and transform a `Parser<Value>` into a `Parser<[Value]>`, parsing using the original as many times as possible and failing on an empty input in the case of the `+` operator.
+
+## Example: Parsing Floats
+
+> You can find this example and more in the Playground by cloning this project and opening the XCode Workspace.
+
+Parsing floating point numbers, such as you might see in Swift, is a good place to start. Below is an implementation of a very basic floating point number parser that extracts the value of the number as a `Double`, if the format is correct.
+
+The aim is to correctly parse floating point numbers written in the following formats:
+
+1. `"123"`
+2. `"123.456"`
+3. `".456"`
+4. `"-123"`
+5. `"-123.456"`
+6. `"-.456"`
+
+As you can see, this is a rather tedious way of defining all the possible strings that you might like to accept, so it is usually useful to first define what you would like to parse in terms of some sort of a grammar. We can do this informally:
+
+A floating point number is:
+
+* an optional minus
+* one or two of the following
+ * some digits
+ * a `.` followed by some digits.
+
+This gives us enough structure to define the building blocks of our parser.
+
+```
+let digits = Pattern.characters(in: .decimalDigits)     // 1
+let uint = digits.stringParser.map { Int($0)! }         // 2, 3
+let ufloat0 = uint.map(Double.init)                     // 4
+
+let ufloat1 = ("." & ufloat0).map { float -> Double in  // 5 - 8
+    guard 0 < float else { return 0 }                   // 9
+    let power = log10(float).rounded(.down) + 1
+    return float / pow(10, power)
 }
 
-let notQuote = Pattern.characters(in: .stringBody).stringParser
-let cellBody = Pattern.characters(in: .cellBody).stringParser
+let ufloat = (ufloat0.optional & ufloat1.optional)      // 10, 11
+    .test { nil != $0 || nil != $1 }                    // 12
+    .map { ($0 ?? 0) + ($1 ?? 0) }                      // 13
 
-let cell = "\"" & notQuote & "\"" || cellBody
-
-let row = cell.separated(by: ",")
-let csv = row.separated(by: "\n")
-
-csv.parse("11,\"one\"\n2,\"two\"")
+let float = ufloat || ("-" & ufloat).map { -$0 }        // 14
 ```
 
-1. You can use the familiar CharacterSet to match a prefix of a string
-2. Any parser can be transformed into a String parser
-3. You can use String literals for efficient definitions of simple matching patterns
-4. You can use familiar operators to combine parsers
-5. You can easily create a parser that matches repeated elements
+Let's go through this example.
 
-The above API using `Parser.separated(by:)` is useful when you don't want to require a separator at the end.
-If instead you wanted to require a newline at the end of the file, you could do it like so:
-
-``` Swift
-let csv = (row & "\n")+ // At least one line required
-```
-
-or
-
-``` Swift
-let csv = (row & "\n")* // Empty file accepted
-```
-
-Note: the `a.separated(by: b)` syntax is equivalent to `a & (b & a)*.map { [$0] + $1 }`
-
-## Example 2: Simple Calculator
-
-Here is an example implementation of a parser that parses simple arithmetic operations on integers:
-
-``` Swift
-import SuperCombinators
-
-let expression = Parser<Int>.recursive { expression -> Parser<Int> in
-
-    // Match all characters in CharacterSet.decimalDigits
-    let int = Pattern.characters(in: .decimalDigits)                       
-        .stringParser
-        .map { Int($0)! }
-
-    let factor = int || "(" & expression & ")"
-
-    // * and / have higher precedence, and should be processed first
-    let term = Parser<Int>.recursive { term -> Parser<Int> in              
-
-        let multiply = factor & " * " & term                               
-        let divide = factor & " / " & term
-
-        return multiply.map(*)
-            || divide.map(/)
-            || factor
-    }
-
-    let add = term & " + " & expression
-    let subtract = term & " - " & expression
-
-    return add.map(+)
-        || subtract.map(-)
-        || term
-}
-
-expression.parse("((3 + 3) * 4 - 6) / 2")
-expression.parse("(3 + 3) * 4 - 6 / 2")
-
-```
-
-The above example shows a few more features of this framework:
-
-1. You can use `map` to transfrom the value that a parser captures
-2. A recursive parser that is simple to define, while not leaking memory
-
-## Motivation
-
-At the time of writing, there are already a number of parser combinator libraries written in Swift, with many articles written about them. Why not just use those? First, there is a number of inconveniences with the popular approach of adapting existing patterns from functional programming languages, which have popularised the use of parser combinators. The heavy use of custom operators makes for a very steep learning curve, and a focus on genericity of the type being parsed makes optimising for string parsing difficult. There also seemed to be no libraries where recursive parsers don't form strong memory cycles.
-
-This framework attempts to solve these issues in the following way:
-
-### Operator confusion
-
-There are only two operators declared in this framework:
-
-``` Swift
-postfix operator *
-postfix operator +
-```
-
-The fact that these operators are postfix means that there can be no possible precedence or associativity conflict when combined with other libraries.
-
-The other operators used in this library are native Swift operators, with familiar associativity and precedence rules, that behave about as you would expect without seeing the documentation.
-
-An additional help is the introduction of a `Pattern` class, that matches the prefix of a string, but does not contain any value. This makes ignoring a part of the parsing explicit, allowing Swift to automatically extract the right values when combining parsers.
-
-### Memory leaks
-
-Memory leaks are avoided by adding a private class whose `parse` function does not hold a strong reference to itself encapsulated in a `Parser`.
-
-The implementation can be found in [Recursive.swift](Sources/Recursive.swift)
+1. `digits: Pattern` is created from a `CharacterSet`. This pattern greedily consumes all unicode codepoints from this set, if there are any.
+2. a `Parser<String>` is created from digits using the `.stringParser` computed variable that returns the `String` traversed
+3. this parser is immediately mapped using the built-in optional `Int` initializer to `uint: Parser<Int>`
+4. we create `float0: Parser<Double>`
+5. a `Pattern` is created using a String literal from `"."`
+6. it is then combined with `ufloat0` using the `&` operator, to give a `Parser<Double>`
+7. the result of this parser is transformed using `.map`
+8. the return type of the closure is necessary for Swift to infer the type of the resulting `Parser`
+9. the value of the fraction part is calculated
+10. the two components are converted to `Parser<Double?>` by using the `.optional` computed variable
+11. they are combined using the `&` operator into a `Parser<(Double?, Double?)>`
+11. by using `.test` we can test the extracted value, making the parser fail if the predicate does not hold
+12. in this case, one of the two fields has to be non-nil
+13. add the two fields of the tuple to give us the unsigned result
+14. we add support for the optional minus sign in front of the floating point
