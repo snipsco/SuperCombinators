@@ -18,6 +18,21 @@ public func || (lhs: Pattern, rhs: Pattern) -> Pattern {
 extension Pattern {
 
     /**
+     Attemps `self`, succeeds if length of prefix parsed equals `length`.
+    */
+    public func length(_ length: Int) -> Pattern {
+        precondition(0 <= length, "Can't expect a negative length")
+        return Pattern { text in
+            guard
+                let suffixIndex = self.parsePrefix(text),
+                length == text.distance(from: text.startIndex, to: suffixIndex)
+                else { return nil }
+
+            return suffixIndex
+        }
+    }
+
+    /**
      Attemps to use `self` `number` times.
     */
     public func count(_ number: Int) -> Pattern {
