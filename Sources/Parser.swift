@@ -110,12 +110,12 @@ extension Parser {
  Parses the text first using the left parser, then the right, and calls the value of the right-hand result on the value of the left-hand result.
 */
 public func / <A, B>(lhs: Parser<A>, rhs: Parser<(A) -> B>) -> Parser<B> {
-    return lhs.and(rhs).map { $1($0) }
+    return lhs.and(rhs).map { $0.1($0.0) }
 }
 
 /**
  Parses the text first using the left parser, then the right, and calls the value of the left-hand result on the value of the right-hand result.
 */
 public func / <A, B>(lhs: Parser<(A) -> B>, rhs: Parser<A>) -> Parser<B> {
-    return lhs.and(rhs).map { $0($1) }
+    return lhs.and(rhs).map { $0.0($0.1) }
 }
