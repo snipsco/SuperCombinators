@@ -31,7 +31,7 @@ extension PatternProtocol {
             guard let result = self.parsePrefix(text) else { return nil }
             let suffixIndex = Self.extractSuffixIndex(from: result)
             return ParseResult<String>(
-                value: text.substring(to: suffixIndex),
+                value: String(text[..<suffixIndex]),
                 suffixIndex: suffixIndex
             )
         }
@@ -88,12 +88,13 @@ extension Pattern: PatternProtocol {
 extension PatternProtocol {
 
     func parseSuffix(of text: String, after substringIndex: String.Index) -> Result? {
-        let substring = text.substring(from: substringIndex)
+        let substring = String(text[substringIndex...])
         guard let result = parsePrefix(substring) else { return nil }
         let firstSuffixIndex = Self.extractSuffixIndex(from: result)
-        let suffixIndex0 = String.UTF16View.Index(firstSuffixIndex, within: substring.utf16)
-        let substringPrefixDistance = substring.utf16.distance(from: substring.utf16.startIndex, to: suffixIndex0)
-        let substringIndex = String.UTF16View.Index(substringIndex, within: text.utf16)
+        let suffixIndex0 = String.UTF16View.Index(firstSuffixIndex, within: substring.utf16)!
+        let substringPrefixDistance =
+            substring.utf16.distance(from: substring.utf16.startIndex, to: suffixIndex0)
+        let substringIndex = String.UTF16View.Index(substringIndex, within: text.utf16)!
         let newSuffixIndexUTF16 = text.utf16.index(substringIndex, offsetBy: substringPrefixDistance)
         let newSuffixIndex = newSuffixIndexUTF16.samePosition(in: text) ?? text.endIndex
         return Self.result(result, with: newSuffixIndex)
