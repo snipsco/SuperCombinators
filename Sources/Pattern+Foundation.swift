@@ -38,7 +38,7 @@ extension Pattern {
         return Pattern { text in
             guard !text.isEmpty else { return nil }
             let suffixIndex = text.index(text.startIndex, offsetBy: 1)
-            let prefix = text.substring(to: suffixIndex)
+            let prefix = String(text[..<suffixIndex])
             if let _ = prefix.rangeOfCharacter(from: characterSet) {
                 return nil
             } else {
